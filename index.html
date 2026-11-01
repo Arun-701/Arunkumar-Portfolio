@@ -266,7 +266,18 @@ section{padding:clamp(64px,4.6vw,82px) 0;border-bottom:1px solid #1d2a40;positio
 .disclaimer{font-size:10px;text-align:center;color:#7486a3;margin-top:14px}
 
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
-.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.project-carousel,.certificate-carousel{position:relative;min-width:0}
+.carousel-viewport{width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scroll-behavior:smooth}
+.carousel-viewport::-webkit-scrollbar{display:none}
+.carousel-track{display:flex;align-items:stretch;min-width:0}
+.project-grid{gap:28px}
+.project-grid .project-card{flex:0 0 calc((100% - 28px)/2);min-width:0;scroll-snap-align:start}
+.slider-controls{display:flex;align-items:center;gap:10px}
+.slider-arrow{width:42px;height:42px;display:grid;place-items:center;border:1px solid #354967;border-radius:50%;background:#101b2c;color:#dce6f7;font-size:22px;line-height:1;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease,opacity .2s ease}
+.slider-arrow:hover:not(:disabled){transform:translateY(-2px);border-color:#9a68f0;background:#211a3e}
+.slider-arrow:disabled{opacity:.4;cursor:not-allowed}
+.slider-arrow:focus-visible{outline:2px solid #a983ff;outline-offset:3px}
+.slider-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .project-card,.skill-card,.education-card{
   background:linear-gradient(145deg,#0e1727,#090f1b);
   border:1px solid var(--border);border-radius:17px;padding:28px;
@@ -295,11 +306,21 @@ section{padding:clamp(64px,4.6vw,82px) 0;border-bottom:1px solid #1d2a40;positio
   position:relative;display:block;
   transition:border-color .2s;
 }
-.project-image-box img{display:block;width:100%;height:100%;object-fit:contain}
+.project-preview-link{cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+.project-preview-link:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(64,133,255,.2)}
+.project-preview-link:focus-visible,.project-title-link:focus-visible,.certificate-preview-link:focus-visible,.certificate-title-link:focus-visible{outline:2px solid #a983ff;outline-offset:4px}
+.project-image-box img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 .project-card:hover .project-image-box{border-color:#48638c}
 .project-card h3{font-size:23px;line-height:1.35;margin:10px 0}
+.project-title-link{display:inline-block;color:inherit;cursor:pointer;transition:color .2s ease}
+.project-title-link:hover{color:#c6a4ff}
 .project-card p{font-size:15px;line-height:1.65;color:var(--muted);margin:14px 0;min-height:76px}
 .project-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:20px}
+
+@media(max-width:650px){
+  .project-grid .project-card{flex-basis:100%}
+  .slider-arrow{width:38px;height:38px}
+}
 
 .skills-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:22px}
 .skill-card{min-width:0;padding:26px;display:flex;flex-direction:column;align-items:flex-start;transition:all .25s ease}
@@ -506,7 +527,7 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
   transform:translateY(-4px);border-color:#7f5be2;
   box-shadow:0 20px 40px -10px rgba(127,91,226,.3);
 }
-.muthuram-feature{margin-top:48px}
+.muthuram-feature{margin-top:48px;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}
 .freelance-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0;width:100%}
 .freelance-copy .eyebrow{font-size:12px}
 .freelance-copy .section-title{font-size:clamp(30px,3vw,44px);line-height:1.15}
@@ -568,6 +589,7 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
   .freelance-copy .tag{font-size:12px;padding:6px 10px}
   .freelance-feature .chart{height:145px}
   .muthuram-feature{margin-top:36px}
+  .muthuram-feature{grid-template-columns:1fr;min-height:0}
 }
 @media(max-width:720px){
   .client-section.freelance-feature,.muthuram-feature{grid-template-columns:1fr;min-height:0;gap:28px;padding:26px}
@@ -597,11 +619,8 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
 
 
 .certificate-section-head{align-items:center}
-.view-all-certificates-link{white-space:nowrap;flex-shrink:0}
 @media(max-width:650px){
   .certificate-section-head{align-items:flex-start;flex-direction:row;gap:8px}
-  .view-all-certificates-link{align-self:flex-start}
-  .certificate-view-all{padding:10px 12px;font-size:10px}
 }
 
 
@@ -610,7 +629,10 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
 .muthuram-gallery-slide{position:absolute;inset:0;display:grid;place-items:center;padding:6px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
 .muthuram-gallery-slide.is-active{opacity:1;visibility:visible}
 .muthuram-gallery-slide img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .35s ease}
+.muthuram-full-image-link{display:block;width:100%;height:100%}
 .muthuram-gallery:hover .muthuram-gallery-slide.is-active img{transform:scale(1.015)}
+.muthuram-gallery{max-height:min(620px,calc(100vh - 180px))}
+.muthuram-gallery-slide{padding:4px}
 .muthuram-gallery-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px}
 .muthuram-gallery-arrow{width:34px;height:34px;display:grid;place-items:center;border:1px solid #354967;border-radius:50%;background:#101b2c;color:#dce6f7;font-size:17px;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
 .muthuram-gallery-arrow:hover{transform:translateY(-2px);border-color:#9a68f0;background:#211a3e}
@@ -622,25 +644,31 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
 @media(prefers-reduced-motion:reduce){.muthuram-gallery-slide,.muthuram-gallery-slide img,.muthuram-gallery-arrow,.muthuram-gallery-indicator{transition:none}}
 
 /* Real certificates displayed directly on the portfolio page */
-.certificate-grid.real-certificate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:26px}
-.real-certificate-card{overflow:hidden;min-width:0;border:1px solid var(--border);border-radius:14px;background:linear-gradient(145deg,#111e33,#0b1423);transition:transform .25s ease,border-color .25s ease}
+.certificate-grid.real-certificate-grid{gap:20px;margin-top:26px}
+.real-certificate-card{display:flex;flex:0 0 calc((100% - 40px)/3);flex-direction:column;min-width:0;scroll-snap-align:start;overflow:hidden;border:1px solid var(--border);border-radius:14px;background:linear-gradient(145deg,#111e33,#0b1423);transition:transform .25s ease,border-color .25s ease}
 .real-certificate-card:hover{transform:translateY(-4px);border-color:#9361e8}
 .real-certificate-thumb{height:250px;background:#f7f7f7;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .real-certificate-thumb img{width:100%;height:100%;object-fit:contain;display:block}
-.real-certificate-info{padding:20px}
+.certificate-preview-link{display:flex;width:100%;height:100%;align-items:center;justify-content:center;cursor:pointer;transition:filter .2s ease}
+.certificate-preview-link:hover{filter:brightness(.94)}
+.real-certificate-info{display:flex;flex:1;flex-direction:column;align-items:flex-start;padding:20px}
 .real-certificate-info h3{font-size:16px;line-height:1.45;margin-bottom:8px}
+.certificate-title-link{color:inherit;cursor:pointer;transition:color .2s ease}
+.certificate-title-link:hover{color:#c6a4ff}
 .real-certificate-info p{font-size:14px;line-height:1.6;color:var(--muted)}
 .real-certificate-info .certificate-meta{margin:8px 0 0;font-size:12px;color:#aebbd1}
+.real-certificate-info .certificate-open-link{margin-top:auto;padding-top:14px}
 .certificate-note{margin-top:17px;color:var(--muted);font-size:11px}
-@media(max-width:900px){.certificate-grid.real-certificate-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.real-certificate-thumb{height:180px}}
-@media(max-width:650px){.certificate-grid.real-certificate-grid{grid-template-columns:1fr}.real-certificate-thumb{height:200px}}
+.certificate-grid.real-certificate-grid.carousel-track{display:flex;align-items:stretch;grid-template-columns:none;gap:20px}
+@media(max-width:900px){.real-certificate-card{flex-basis:calc((100% - 20px)/2)}.real-certificate-thumb{height:180px}}
+@media(max-width:650px){.real-certificate-card{flex-basis:100%}.real-certificate-thumb{height:200px}}
+.slider-controls{flex-wrap:wrap;justify-content:flex-end}
+@media(prefers-reduced-motion:reduce){.carousel-viewport{scroll-behavior:auto}}
 
 
 .certificate-open-link{display:inline-flex;align-items:center;margin-top:14px;padding:10px 14px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:650;color:#fff;background:linear-gradient(100deg,#397bff,#873bff);transition:transform .2s ease,filter .2s ease}
 .certificate-open-link:hover{transform:translateY(-2px);filter:brightness(1.12)}
 
-
-.certificate-view-all{white-space:nowrap;align-self:center}
 
 </style>
 </head>
@@ -837,6 +865,11 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
         <div class="muthuram-gallery-slide" role="group" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true">
           <img src="assets/muthuram-products.png" alt="Muthuram Shoe Mart limited-time offers, product cards, recently viewed items, and new arrivals">
         </div>
+        <div class="muthuram-gallery-slide" role="group" aria-roledescription="slide" aria-label="4 of 4" aria-hidden="true">
+          <a class="muthuram-full-image-link" href="assets/muthuram-kids-footwear.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size Kids Footwear screenshot in a new tab">
+            <img src="assets/muthuram-kids-footwear.png" alt="Muthuram Shoe Mart Kids Footwear product listing">
+          </a>
+        </div>
       </div>
       <div class="muthuram-gallery-controls" aria-label="Screenshot navigation">
         <button class="muthuram-gallery-arrow" type="button" data-gallery-prev aria-label="Show previous screenshot">‹</button>
@@ -844,6 +877,7 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
           <button class="muthuram-gallery-indicator" type="button" data-gallery-slide="0" aria-label="Show homepage screenshot" aria-pressed="true"></button>
           <button class="muthuram-gallery-indicator" type="button" data-gallery-slide="1" aria-label="Show categories screenshot" aria-pressed="false"></button>
           <button class="muthuram-gallery-indicator" type="button" data-gallery-slide="2" aria-label="Show product sections screenshot" aria-pressed="false"></button>
+          <button class="muthuram-gallery-indicator" type="button" data-gallery-slide="3" aria-label="Show Kids Footwear screenshot" aria-pressed="false"></button>
         </div>
         <button class="muthuram-gallery-arrow" type="button" data-gallery-next aria-label="Show next screenshot">›</button>
       </div>
@@ -857,18 +891,24 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
 <div class="container">
   <div class="section-head">
     <div><div class="eyebrow">Selected Work</div><h2 class="section-title">Verified GitHub Projects</h2></div>
-    <a class="btn btn-secondary" href="https://github.com/Arun-701" target="_blank" rel="noopener">All Repositories ↗</a>
+    <div class="slider-controls">
+      <a class="btn btn-secondary" href="https://github.com/Arun-701" target="_blank" rel="noopener">All Repositories ↗</a>
+      <button class="slider-arrow" type="button" data-carousel-prev aria-label="Previous projects" aria-controls="projectCarouselViewport" disabled>‹</button>
+      <button class="slider-arrow" type="button" data-carousel-next aria-label="Next projects" aria-controls="projectCarouselViewport">›</button>
+    </div>
   </div>
-  <div class="project-grid">
+  <div class="project-carousel" data-carousel>
+    <div class="carousel-viewport" id="projectCarouselViewport" tabindex="0" aria-label="GitHub projects">
+      <div class="project-grid carousel-track">
     
     <!-- Project 1: AI Placement Intelligence -->
     <article class="project-card spotlight-card">
-      <div class="project-image-box">
+      <a class="project-image-box project-preview-link" href="https://github.com/Arun-701/AI-Placement-Intelligence-Platform" target="_blank" rel="noopener noreferrer" aria-label="Open AI Placement Intelligence Platform repository in a new tab">
         <img src="assets/projects/ai-placement-intelligence.png" alt="AI placement readiness dashboard showing student assessments, resume ATS analysis, and career skills">
-      </div>
+      </a>
 
       <div class="eyebrow">MERN & Intelligence</div>
-      <h3>AI Placement Intelligence Platform</h3>
+      <h3><a class="project-title-link" href="https://github.com/Arun-701/AI-Placement-Intelligence-Platform" target="_blank" rel="noopener noreferrer">AI Placement Intelligence Platform</a></h3>
       <p>An AI-driven student career platform with assessments, mock evaluations, resume analytics, learning roadmaps, and career skill guidance.</p>
       <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span></div>
       <div class="project-links">
@@ -882,12 +922,12 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
 
     <!-- Project 2: Superstore Sales Dashboard -->
     <article class="project-card spotlight-card">
-      <div class="project-image-box">
+      <a class="project-image-box project-preview-link" href="https://github.com/Arun-701/Superstore-Sales-Dashboard" target="_blank" rel="noopener noreferrer" aria-label="Open Superstore Sales Dashboard repository in a new tab">
         <img src="assets/projects/superstore-sales-dashboard.jpeg" alt="Power BI Superstore Sales Dashboard screenshot">
-      </div>
+      </a>
 
       <div class="eyebrow">Data Analytics & Business Intelligence</div>
-      <h3>Superstore Sales Dashboard</h3>
+      <h3><a class="project-title-link" href="https://github.com/Arun-701/Superstore-Sales-Dashboard" target="_blank" rel="noopener noreferrer">Superstore Sales Dashboard</a></h3>
       <p>An interactive Power BI dashboard built on the Sample Superstore dataset, with category, product, priority and regional sales views, sales and profit trends, and interactive slicers.</p>
       <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span><span class="tag">Interactive Slicers</span></div>
       <div class="project-links">
@@ -900,7 +940,60 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
 
 
 
+    <!-- Project 3: HR Attrition Analysis -->
+    <article class="project-card spotlight-card">
+      <a class="project-image-box project-preview-link" href="https://github.com/Arun-701/HR-Attrition-Analysis" target="_blank" rel="noopener noreferrer" aria-label="Open HR Attrition Analysis repository in a new tab">
+        <img src="assets/projects/hr-attrition-analysis.jpeg" alt="Employee overtime impact chart from the HR attrition analysis">
+      </a>
+      <div class="eyebrow">People Analytics</div>
+      <h3><a class="project-title-link" href="https://github.com/Arun-701/HR-Attrition-Analysis" target="_blank" rel="noopener noreferrer">HR Attrition Analysis</a></h3>
+      <p>Analysis of the IBM HR Analytics employee dataset exploring attrition patterns across overtime, age, salary, departments, job roles, and work-life balance.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span></div>
+      <div class="project-links">
+        <a class="btn btn-primary" href="https://github.com/Arun-701/HR-Attrition-Analysis" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+          Repository
+        </a>
+      </div>
+    </article>
 
+    <!-- Project 4: Power BI Sales Dashboard -->
+    <article class="project-card spotlight-card">
+      <a class="project-image-box project-preview-link" href="https://github.com/Arun-701/PowerBI-Sales-Dashboard" target="_blank" rel="noopener noreferrer" aria-label="Open Power BI Sales Dashboard repository in a new tab">
+        <img src="assets/projects/powerbi-sales-dashboard.png" alt="Power BI e-commerce sales dashboard with platform, category, and state visualizations">
+      </a>
+      <div class="eyebrow">Data Analytics & Business Intelligence</div>
+      <h3><a class="project-title-link" href="https://github.com/Arun-701/PowerBI-Sales-Dashboard" target="_blank" rel="noopener noreferrer">Power BI Sales Dashboard</a></h3>
+      <p>An interactive sales and profit analytics dashboard with sales, profit and order KPIs, monthly trends, platform and category comparisons, and state-level sales views.</p>
+      <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel / CSV</span></div>
+      <div class="project-links">
+        <a class="btn btn-primary" href="https://github.com/Arun-701/PowerBI-Sales-Dashboard" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+          Repository
+        </a>
+      </div>
+    </article>
+
+    <!-- Project 5: COVID-19 Data Analysis -->
+    <article class="project-card spotlight-card">
+      <a class="project-image-box project-preview-link" href="https://github.com/Arun-701/Covid19-data-analysis" target="_blank" rel="noopener noreferrer" aria-label="Open COVID-19 Data Analysis repository in a new tab">
+        <img src="assets/projects/covid19-data-analysis.png" alt="Top countries by COVID-19 deaths chart from the global COVID-19 analysis">
+      </a>
+      <div class="eyebrow">Global Health Data Analysis</div>
+      <h3><a class="project-title-link" href="https://github.com/Arun-701/Covid19-data-analysis" target="_blank" rel="noopener noreferrer">COVID-19 Data Analysis</a></h3>
+      <p>Global COVID-19 analysis comparing country-level cases and deaths, death rates, and daily case trends through data cleaning, exploratory analysis, and interactive visualizations.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Plotly</span><span class="tag">Requests</span></div>
+      <div class="project-links">
+        <a class="btn btn-primary" href="https://github.com/Arun-701/Covid19-data-analysis" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+          Repository
+        </a>
+      </div>
+    </article>
+
+      </div>
+    </div>
+    <div class="slider-status" aria-live="polite"></div>
   </div>
 </div>
 </section>
@@ -932,36 +1025,116 @@ footer{padding:34px 0;color:#8290a9;font-size:13px}
       <h2 class="section-title">Certifications</h2>
       <p class="section-intro">A selection of professional certifications and industry learning achievements.</p>
     </div>
-    <a class="btn btn-secondary certificate-view-all" href="certificates.html">View All Certificates ↗</a>
+    <div class="slider-controls">
+      <button class="slider-arrow" type="button" data-carousel-prev aria-label="Previous certificates" aria-controls="certificateCarouselViewport" disabled>‹</button>
+      <button class="slider-arrow" type="button" data-carousel-next aria-label="Next certificates" aria-controls="certificateCarouselViewport">›</button>
+    </div>
   </div>
-  <div class="certificate-grid real-certificate-grid">
+  <div class="certificate-carousel" data-carousel>
+    <div class="carousel-viewport" id="certificateCarouselViewport" tabindex="0" aria-label="All certificates">
+      <div class="certificate-grid real-certificate-grid carousel-track">
     <article class="real-certificate-card">
-      <div class="real-certificate-thumb"><img src="assets/certificates/cii-foundational-ai.png" alt="Foundational Course on Applied Machine Learning and AI certificate preview" loading="lazy"></div>
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/cii-foundational-ai.png" target="_blank" rel="noopener noreferrer" aria-label="Open Foundational Course on Applied Machine Learning and AI certificate in a new tab"><img src="assets/certificates/cii-foundational-ai.png" alt="Foundational Course on Applied Machine Learning and AI certificate preview" loading="lazy"></a></div>
       <div class="real-certificate-info">
-        <h3>Foundational Course on Applied Machine Learning and AI</h3>
+        <h3><a class="certificate-title-link" href="certificates/cii-foundational-ai.png" target="_blank" rel="noopener noreferrer">Foundational Course on Applied Machine Learning and AI</a></h3>
         <p>Confederation of Indian Industry (CII) · Centre for AI</p>
         <div class="certificate-meta">16 Jul 2026</div>
         <a class="certificate-open-link" href="certificates/cii-foundational-ai.png" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
     </article>
     <article class="real-certificate-card">
-      <div class="real-certificate-thumb"><img src="assets/certificates/certificate-03.jpg" alt="AWS Academy Graduate – Cloud Foundations certificate preview" loading="lazy"></div>
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/aws-cloud-foundations.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open AWS Academy Graduate – Cloud Foundations certificate in a new tab"><img src="assets/certificates/certificate-03.jpg" alt="AWS Academy Graduate – Cloud Foundations certificate preview" loading="lazy"></a></div>
       <div class="real-certificate-info">
-        <h3>AWS Academy Graduate – Cloud Foundations</h3>
+        <h3><a class="certificate-title-link" href="certificates/aws-cloud-foundations.pdf" target="_blank" rel="noopener noreferrer">AWS Academy Graduate – Cloud Foundations</a></h3>
         <p>AWS Academy · 20 hours</p>
         <div class="certificate-meta">2026</div>
         <a class="certificate-open-link" href="certificates/aws-cloud-foundations.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
     </article>
     <article class="real-certificate-card">
-      <div class="real-certificate-thumb"><img src="assets/certificates/certificate-08.jpg" alt="Data Analytics Job Simulation certificate preview" loading="lazy"></div>
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/quantium-data-analytics.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Data Analytics Job Simulation certificate in a new tab"><img src="assets/certificates/certificate-08.jpg" alt="Data Analytics Job Simulation certificate preview" loading="lazy"></a></div>
       <div class="real-certificate-info">
-        <h3>Data Analytics Job Simulation</h3>
+        <h3><a class="certificate-title-link" href="certificates/quantium-data-analytics.pdf" target="_blank" rel="noopener noreferrer">Data Analytics Job Simulation</a></h3>
         <p>Quantium · Forage</p>
         <div class="certificate-meta">17 Jul 2026</div>
         <a class="certificate-open-link" href="certificates/quantium-data-analytics.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
     </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/acquiring-data.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Acquiring Data certificate in a new tab"><img src="assets/certificates/certificate-02.jpg" alt="Acquiring Data certificate preview" loading="lazy"></a></div>
+      <div class="real-certificate-info">
+        <h3><a class="certificate-title-link" href="certificates/acquiring-data.pdf" target="_blank" rel="noopener noreferrer">Acquiring Data</a></h3>
+        <p>FutureSkills Prime · Nasscom IT-ITeS SSC</p>
+        <div class="certificate-meta">29 Mar 2026</div>
+        <a class="certificate-open-link" href="certificates/acquiring-data.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/codechef-sql-practice.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open SQL Practice Queries certificate in a new tab"><img src="assets/certificates/certificate-04.jpg" alt="SQL Practice Queries certificate preview" loading="lazy"></a></div>
+      <div class="real-certificate-info">
+        <h3><a class="certificate-title-link" href="certificates/codechef-sql-practice.pdf" target="_blank" rel="noopener noreferrer">SQL Practice Queries</a></h3>
+        <p>CodeChef</p>
+        <div class="certificate-meta">21 Jul 2026</div>
+        <a class="certificate-open-link" href="certificates/codechef-sql-practice.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/data-processing-visualisation.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Data Processing and Visualisation certificate in a new tab"><img src="assets/certificates/certificate-05.jpg" alt="Data Processing and Visualisation certificate preview" loading="lazy"></a></div>
+      <div class="real-certificate-info">
+        <h3><a class="certificate-title-link" href="certificates/data-processing-visualisation.pdf" target="_blank" rel="noopener noreferrer">Data Processing and Visualisation</a></h3>
+        <p>FutureSkills Prime · Nasscom IT-ITeS SSC</p>
+        <div class="certificate-meta">08 Feb 2026</div>
+        <a class="certificate-open-link" href="certificates/data-processing-visualisation.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/accenture-ai-ascend.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Data Processing and Visualisation – Level 2 (AI ASCEND) certificate in a new tab"><img src="assets/certificates/certificate-06.jpg" alt="Data Processing and Visualisation – Level 2 (AI ASCEND) certificate preview" loading="lazy"></a></div>
+      <div class="real-certificate-info">
+        <h3><a class="certificate-title-link" href="certificates/accenture-ai-ascend.pdf" target="_blank" rel="noopener noreferrer">Data Processing and Visualisation – Level 2 (AI ASCEND)</a></h3>
+        <p>Accenture · FutureSkills Prime</p>
+        <div class="certificate-meta">08 Feb 2026</div>
+        <a class="certificate-open-link" href="certificates/accenture-ai-ascend.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/digital-101-gold.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Digital 101 – 30 Hours · Gold Category certificate in a new tab"><img src="assets/certificates/certificate-07.jpg" alt="Digital 101 – 30 Hours · Gold Category certificate preview" loading="lazy"></a></div>
+      <div class="real-certificate-info">
+        <h3><a class="certificate-title-link" href="certificates/digital-101-gold.pdf" target="_blank" rel="noopener noreferrer">Digital 101 – 30 Hours · Gold Category</a></h3>
+        <p>FutureSkills Prime · NASSCOM</p>
+        <div class="certificate-meta">04 Mar 2026 · 88% score</div>
+        <a class="certificate-open-link" href="certificates/digital-101-gold.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/shakthisat-cosmic-gratitude.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Mission ShakthiSAT – Cosmic Gratitude certificate in a new tab"><img src="assets/certificates/certificate-09.jpg" alt="Mission ShakthiSAT – Cosmic Gratitude certificate preview" loading="lazy"></a></div>
+      <div class="real-certificate-info">
+        <h3><a class="certificate-title-link" href="certificates/shakthisat-cosmic-gratitude.pdf" target="_blank" rel="noopener noreferrer">Mission ShakthiSAT – Cosmic Gratitude</a></h3>
+        <p>Space Kidz India · ShakthiSAT</p>
+        <div class="certificate-meta">Participation certificate</div>
+        <a class="certificate-open-link" href="certificates/shakthisat-cosmic-gratitude.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/tata-data-visualisation.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Data Visualisation: Empowering Business with Effective Insights certificate in a new tab"><img src="assets/certificates/certificate-10.jpg" alt="Data Visualisation: Empowering Business with Effective Insights certificate preview" loading="lazy"></a></div>
+      <div class="real-certificate-info">
+        <h3><a class="certificate-title-link" href="certificates/tata-data-visualisation.pdf" target="_blank" rel="noopener noreferrer">Data Visualisation: Empowering Business with Effective Insights</a></h3>
+        <p>Tata Group · Forage</p>
+        <div class="certificate-meta">02 Apr 2026</div>
+        <a class="certificate-open-link" href="certificates/tata-data-visualisation.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><a class="certificate-preview-link" href="certificates/sap-basic-abap.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Learning Basic ABAP Programming certificate in a new tab"><img src="assets/certificates/certificate-11.jpg" alt="Learning Basic ABAP Programming certificate preview" loading="lazy"></a></div>
+      <div class="real-certificate-info">
+        <h3><a class="certificate-title-link" href="certificates/sap-basic-abap.pdf" target="_blank" rel="noopener noreferrer">Learning Basic ABAP Programming</a></h3>
+        <p>SAP Learning · Beginner Level</p>
+        <div class="certificate-meta">13 May 2026</div>
+        <a class="certificate-open-link" href="certificates/sap-basic-abap.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+      </div>
+    </div>
+    <div class="slider-status" aria-live="polite"></div>
   </div>
 </div>
 </section>
@@ -1104,7 +1277,8 @@ if (muthuramGallery) {
   const captions = [
     "Muthuram Shoe Mart — Homepage preview",
     "Muthuram Shoe Mart — Categories and offers preview",
-    "Muthuram Shoe Mart — Product sections preview"
+    "Muthuram Shoe Mart — Product sections preview",
+    "Muthuram Shoe Mart — Kids Footwear product listing"
   ];
   let activeSlide = 0;
   let pointerStartX = null;
@@ -1161,6 +1335,65 @@ if (muthuramGallery) {
   });
   updateGalleryAspectRatio();
 }
+
+document.querySelectorAll("[data-carousel]").forEach(carousel => {
+  const viewport = carousel.querySelector(".carousel-viewport");
+  const track = viewport && viewport.querySelector(".carousel-track");
+  if (!viewport || !track || !track.children.length) return;
+
+  const cards = [...track.children];
+  const previous = document.querySelector(`[aria-controls="${viewport.id}"][data-carousel-prev]`);
+  const next = document.querySelector(`[aria-controls="${viewport.id}"][data-carousel-next]`);
+  const status = carousel.querySelector(".slider-status");
+  const itemLabel = viewport.getAttribute("aria-label") === "All certificates" ? "certificates" : "projects";
+
+  function getMetrics() {
+    const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const stride = cardWidth + gap;
+    const visible = Math.max(1, Math.round((viewport.clientWidth + gap) / stride));
+    return { gap, stride, visible, maxIndex: Math.max(0, cards.length - visible) };
+  }
+
+  function currentIndex(metrics) {
+    return Math.max(0, Math.min(metrics.maxIndex, Math.round(viewport.scrollLeft / metrics.stride)));
+  }
+
+  function updateControls() {
+    const metrics = getMetrics();
+    const atStart = viewport.scrollLeft <= 1;
+    const atEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - 2;
+    if (previous) previous.disabled = atStart;
+    if (next) next.disabled = atEnd;
+    if (status) {
+      const first = currentIndex(metrics);
+      status.textContent = `Showing ${itemLabel} ${first + 1}–${Math.min(first + metrics.visible, cards.length)} of ${cards.length}`;
+    }
+  }
+
+  function move(direction) {
+    const metrics = getMetrics();
+    const index = currentIndex(metrics);
+    const target = Math.max(0, Math.min(metrics.maxIndex, index + direction * metrics.visible));
+    viewport.scrollTo({ left: target * metrics.stride, behavior: "smooth" });
+  }
+
+  if (previous) previous.addEventListener("click", () => move(-1));
+  if (next) next.addEventListener("click", () => move(1));
+  viewport.addEventListener("scroll", updateControls, { passive: true });
+  viewport.addEventListener("keydown", event => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    move(event.key === "ArrowRight" ? 1 : -1);
+  });
+  window.addEventListener("resize", () => {
+    const metrics = getMetrics();
+    const index = currentIndex(metrics);
+    viewport.scrollTo({ left: index * metrics.stride, behavior: "auto" });
+    updateControls();
+  });
+  updateControls();
+});
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
