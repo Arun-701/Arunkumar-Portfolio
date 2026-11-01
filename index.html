@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arunkumar N | Developer Portfolio</title>
+<meta name="description" content="Arunkumar N — B.Tech IT student at Sona College of Technology, aspiring Data Analyst and Full Stack Developer.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+  --bg:#070c16;
+  --panel:#0d1626;
+  --panel2:#101c30;
+  --border:#25344d;
+  --text:#f0f3ff;
+  --muted:#9caac2;
+  --purple:#a36bff;
+  --blue:#4085ff;
+  --cyan:#00f2fe;
+  --green:#51e0af;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:Inter,Arial,sans-serif;line-height:1.6;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit}
+.container{width:95%;max-width:1800px;margin:0 auto}
+section{padding:clamp(64px,4.6vw,82px) 0;border-bottom:1px solid #1d2a40;position:relative}
+
+.cursor-glow {
+  position:fixed;top:0;left:0;width:350px;height:350px;
+  background:radial-gradient(circle,rgba(163,107,255,0.08) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);
+  z-index:9999;transition:transform .08s ease-out;
+}
+
+.gradient-text{
+  background:linear-gradient(100deg,#bf83ff,#438bff,#00f2fe);
+  background-size:200% 200%;
+  animation:gradientShift 6s ease infinite;
+  color:transparent;background-clip:text;-webkit-background-clip:text;
+}
+@keyframes gradientShift {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* Typewriter Running Text Cursor */
+.typewriter-cursor {
+  display:inline-block;
+  width:3px;
+  height:0.9em;
+  background-color:var(--cyan);
+  margin-left:5px;
+  vertical-align:middle;
+  animation:blink 0.8s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.eyebrow{
+  color:#aa7cff;text-transform:uppercase;letter-spacing:1.8px;
+  font-size:12px;font-weight:700;
+}
+.section-title{font-size:clamp(34px,3.2vw,48px);letter-spacing:-1.2px;line-height:1.18;margin-top:10px}
+.section-intro{color:var(--muted);max-width:760px;margin-top:14px;font-size:16px}
+.navbar{
+  position:sticky;top:0;z-index:50;
+  background:#070c16ed;backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  min-height:82px;display:flex;align-items:center;
+  justify-content:space-between;gap:24px;
+}
+.logo{font-size:32px;font-weight:800;letter-spacing:-1.5px;transition:transform .3s}
+.logo:hover{transform:scale(1.05)}
+.logo span{color:var(--purple)}
+.nav-links{display:flex;align-items:center;gap:clamp(14px,1.6vw,26px)}
+.nav-links a{font-size:15px;color:#c4cde0;transition:.2s;position:relative}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:var(--purple);transition:width .25s ease;
+}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:#a983ff}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:10px;padding:14px 21px;font-size:14px;font-weight:700;
+  border:1px solid #354562;cursor:pointer;transition:all .25s cubic-bezier(0.16,1,0.3,1);
+  position:relative;overflow:hidden;
+}
+.btn svg{width:15px;height:15px;flex-shrink:0;transition:transform .2s}
+.btn:hover svg{transform:translate(2px,-2px)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px -5px rgba(64,133,255,0.35);border-color:var(--purple)}
+.btn-primary{background:linear-gradient(110deg,#347fff,#762cff);border-color:transparent;color:white}
+.btn-secondary{background:#0c1422}
+.btn-secondary:hover{background:#111c30}
+.menu-btn{
+  display:none;border:1px solid var(--border);background:var(--panel);
+  color:white;border-radius:8px;padding:8px 11px;cursor:pointer;
+}
+
+.hero{
+  min-height:clamp(620px,47vw,780px);display:grid;grid-template-columns:1.1fr .9fr;
+  gap:clamp(32px,4vw,64px);align-items:center;padding:76px 0 68px;
+  position:relative;
+}
+.hero:before{
+  content:"";position:absolute;top:0;right:0;width:55%;height:100%;
+  background:radial-gradient(ellipse,#22205c66,transparent 68%);pointer-events:none;
+}
+.hero-content,.hero-visual{position:relative;z-index:1}
+.pill{
+  display:inline-flex;flex-wrap:wrap;gap:10px;align-items:center;
+  border:1px solid #2b4260;background:#0c1a2b;border-radius:30px;
+  padding:9px 16px;color:#c7d7f2;font-size:13px;
+  transition:border-color .3s;
+}
+.pill:hover{border-color:var(--cyan)}
+.pill .dot{color:var(--purple)}
+.hero h1{
+  font-size:clamp(76px,6.2vw,88px);line-height:1.04;
+  letter-spacing:-5px;margin:28px 0 22px;
+}
+.hero h2{font-size:clamp(25px,2.3vw,32px);line-height:1.35;font-weight:600;max-width:680px}
+.hero p{color:var(--muted);font-size:17px;line-height:1.7;max-width:660px;margin-top:18px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.socials{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.social-icon-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:10px 15px;border-radius:9px;background:#0b1424;border:1px solid #28374d;
+  font-size:14px;color:#bdcbe2;transition:all .25s ease;
+}
+.social-icon-btn svg{width:17px;height:17px;transition:transform .2s}
+.social-icon-btn:hover{color:white;border-color:var(--purple);background:#121e35;transform:translateY(-2px);box-shadow:0 6px 15px rgba(163,107,255,0.25)}
+.social-icon-btn:hover svg{transform:scale(1.15)}
+
+.hero-visual{min-height:470px;display:grid;place-items:center}
+.orbit{
+  position:absolute;width:min(360px,78%);aspect-ratio:1;border-radius:50%;
+  background:linear-gradient(145deg,#7728e9,#1e69ff);
+  box-shadow:0 0 100px #6039df44;
+  animation:spinSlow 20s linear infinite;
+}
+@keyframes spinSlow {
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
+}
+.avatar{
+  z-index:1;width:260px;height:340px;border-radius:125px 125px 30px 30px;
+  background:linear-gradient(145deg,#202e4b,#111624);
+  border:1px solid #8c7be277;display:flex;align-items:center;
+  justify-content:center;box-shadow:0 25px 70px #0008;overflow:hidden;
+  transition:transform .4s cubic-bezier(0.16,1,0.3,1),box-shadow .4s ease;
+}
+.avatar:hover{
+  transform:scale(1.03) translateY(-4px);
+  box-shadow:0 35px 90px rgba(119,40,233,0.35);
+  border-color:#a36bff;
+}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+.floating{
+  position:absolute;z-index:2;display:flex;align-items:center;gap:10px;
+  padding:14px 17px;border-radius:13px;border:1px solid #293b59;
+  background:#0a1425ee;box-shadow:0 10px 30px #0003;backdrop-filter:blur(8px);
+  transition:all .3s cubic-bezier(0.16,1,0.3,1);cursor:default;
+}
+.floating:hover{
+  transform:translateY(-6px) scale(1.04);
+  border-color:var(--cyan);
+  box-shadow:0 15px 35px rgba(0,242,254,0.2);
+}
+.floating .symbol{
+  width:38px;height:38px;border-radius:9px;background:#1a233c;
+  display:grid;place-items:center;color:#b38aff;transition:background .2s,color .2s;
+}
+.floating:hover .symbol{background:var(--purple);color:white}
+.floating .symbol svg{width:21px;height:21px}
+.floating strong,.floating small{display:block}
+.floating strong{font-size:13px}
+.floating small{font-size:12px;color:var(--muted);margin-top:2px}
+.float-one{right:0;top:8%}
+.float-two{left:0;top:42%}
+.float-three{right:0;bottom:7%}
+
+.client-section{display:grid;grid-template-columns:1fr 1.05fr;gap:45px;align-items:center}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
+.tag{
+  border:1px solid #293c58;background:#101e32;border-radius:30px;
+  padding:7px 13px;font-size:13px;color:#c9d8ef;transition:all .2s ease;
+}
+.tag:hover{border-color:var(--purple);background:#172844;color:white;transform:translateY(-2px)}
+.client-copy>p{color:var(--muted);font-size:15px;margin:16px 0}
+.features{list-style:none;display:grid;gap:12px;margin:20px 0}
+.features li{font-size:14px;color:#d1daeb;display:flex;align-items:center;transition:transform .2s}
+.features li:hover{transform:translateX(5px)}
+.check{
+  display:inline-grid;place-items:center;background:#8853e9;color:white;
+  width:21px;height:21px;border-radius:50%;margin-right:10px;font-size:12px;flex-shrink:0;
+  box-shadow:0 0 10px rgba(136,83,233,0.5);
+}
+
+.dashboard{
+  border:1px solid #334762;border-radius:15px;padding:20px;
+  background:linear-gradient(145deg,#111d30,#09111f);
+  box-shadow:0 25px 70px #0005;transition:border-color .3s,box-shadow .3s;
+}
+.dashboard:hover{
+  border-color:#48638c;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 40px rgba(64,133,255,0.1);
+}
+.dash-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.dash-header h3{font-size:18px}
+.dash-header span{font-size:11px;color:#85b5ff;letter-spacing:1px}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
+.filter{
+  font-size:11px;color:#b4c1d8;border:1px solid #2b3b53;
+  background:#0a1423;padding:8px 11px;border-radius:7px;cursor:pointer;
+  transition:all .2s ease;user-select:none;
+}
+.filter:hover,.filter.active{
+  background:#1a2842;border-color:var(--cyan);color:white;
+  box-shadow:0 0 10px rgba(0,242,254,0.25);
+}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.metric{
+  background:#0a1525;border:1px solid #24344c;border-radius:9px;padding:15px;
+  transition:all .25s ease;
+}
+.metric:hover{transform:translateY(-3px);border-color:var(--purple);background:#0e1e35}
+.metric span,.metric strong,.metric small{display:block}
+.metric span{font-size:11px;color:var(--muted)}
+.metric strong{font-size:clamp(15px,1.7vw,22px);margin:8px 0;transition:color .2s}
+.metric:hover strong{color:var(--cyan)}
+.metric small{font-size:11px;color:var(--green)}
+.chart-card{border:1px solid #24344c;background:#0a1525;border-radius:9px;padding:16px;margin-top:14px}
+.chart-card h4{font-size:14px;font-weight:600}
+.chart{height:170px;display:flex;align-items:end;gap:8px;margin-top:14px}
+.bar{
+  flex:1;min-width:4px;border-radius:4px 4px 0 0;
+  background:linear-gradient(0deg,#386fff,#ad72ff);opacity:.85;
+  transition:height .4s cubic-bezier(0.16,1,0.3,1),opacity .2s,background .2s;
+  cursor:pointer;
+}
+.bar:hover{opacity:1;background:linear-gradient(0deg,#00f2fe,#a36bff);filter:drop-shadow(0 0 8px rgba(0,242,254,0.6))}
+.chart-labels{display:flex;justify-content:space-between;color:#8191ad;font-size:10px;margin-top:9px}
+.dash-bottom{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.insight{border:1px solid #24344c;border-radius:9px;padding:14px;background:#0a1525;transition:border-color .2s}
+.insight:hover{border-color:var(--blue)}
+.insight span,.insight strong,.insight small{display:block}
+.insight span{font-size:10px;color:var(--muted)}
+.insight strong{font-size:14px;margin:7px 0}
+.insight small{font-size:10px;color:#8fa0bd}
+.disclaimer{font-size:10px;text-align:center;color:#7486a3;margin-top:14px}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.project-card,.skill-card,.education-card{
+  background:linear-gradient(145deg,#0e1727,#090f1b);
+  border:1px solid var(--border);border-radius:17px;padding:28px;
+  transition:all .3s cubic-bezier(0.16,1,0.3,1);
+  position:relative;overflow:hidden;
+}
+.project-card{display:flex;flex-direction:column}
+.project-card:hover{
+  transform:translateY(-6px);
+  border-color:#7f5be2;
+  box-shadow:0 20px 40px -10px rgba(127,91,226,0.3);
+}
+
+.spotlight-card::before {
+  content:'';position:absolute;top:var(--mouse-y,-100px);left:var(--mouse-x,-100px);
+  width:250px;height:250px;border-radius:50%;
+  background:radial-gradient(circle,rgba(163,107,255,0.15),transparent 70%);
+  pointer-events:none;transform:translate(-50%,-50%);
+  transition:opacity .2s;opacity:0;
+}
+.spotlight-card:hover::before{opacity:1}
+
+.project-image-box{
+  aspect-ratio:16/9;border-radius:12px;border:1px solid #283a54;
+  background:#091120;margin-bottom:22px;overflow:hidden;
+  position:relative;display:block;
+  transition:border-color .2s;
+}
+.project-image-box img{display:block;width:100%;height:100%;object-fit:contain}
+.project-card:hover .project-image-box{border-color:#48638c}
+.project-card h3{font-size:23px;line-height:1.35;margin:10px 0}
+.project-card p{font-size:15px;line-height:1.65;color:var(--muted);margin:14px 0;min-height:76px}
+.project-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:20px}
+
+.skills-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:22px}
+.skill-card{min-width:0;padding:26px;display:flex;flex-direction:column;align-items:flex-start;transition:all .25s ease}
+.skill-card:hover{transform:translateY(-4px);border-color:#5a498f;box-shadow:0 12px 25px rgba(0,0,0,0.4)}
+.skill-card h3{font-size:19px;margin-bottom:18px;display:flex;align-items:center;gap:9px}
+.skill-tags{display:flex;flex-wrap:nowrap;align-items:center;gap:5px;width:100%;min-width:0;overflow:visible}
+.skill-tags span{
+  flex:0 0 auto;white-space:nowrap;
+  background:#19283e;border:1px solid #40536f;border-radius:9px;
+  color:#e0e8f5;padding:6px;font-size:12px;font-weight:500;line-height:1.35;
+  transition:all .2s ease;cursor:default;
+}
+.skill-tags span:hover{
+  background:#282143;border-color:var(--purple);color:white;
+  transform:translateY(-2px);box-shadow:0 4px 10px rgba(163,107,255,0.25);
+}
+@media(max-width:1250px) and (min-width:1101px){
+  .skill-card{padding:16px}
+  .skill-tags{gap:4px}
+  .skill-tags span{font-size:11px;padding:4px}
+}
+@media(max-width:1100px) and (min-width:651px){
+  .skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+.education-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.education-card{display:flex;gap:20px;align-items:flex-start;padding:28px}
+.education-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.edu-icon{
+  width:54px;height:54px;display:grid;place-items:center;flex-shrink:0;
+  background:#1d2041;color:#ba8aff;border-radius:10px;transition:all .3s ease;
+}
+.education-card:hover .edu-icon{
+  background:var(--purple);color:white;transform:scale(1.08);
+  box-shadow:0 0 20px rgba(163,107,255,0.5);
+}
+.edu-icon svg{width:26px;height:26px}
+.education-card h3{font-size:20px;line-height:1.4;margin:9px 0}
+.education-card p{font-size:15px;line-height:1.65;color:var(--muted);margin-top:7px}
+
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+.stat{
+  min-width:0;padding:24px;border:1px solid var(--border);background:var(--panel);border-radius:14px;text-align:center;
+  transition:all .25s ease;
+}
+.stat:hover{transform:translateY(-3px);border-color:var(--cyan);background:#101a2c}
+.stat strong{display:block;font-size:30px;color:#b78aff;transition:color .2s}
+.stat:hover strong{color:var(--cyan)}
+.stat span{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+
+.contact-section{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+.contact-section .section-title{font-size:clamp(36px,3.5vw,50px)}
+.contact-copy>p{color:var(--muted);font-size:16px;line-height:1.7;margin-top:18px}
+.contact-links{display:grid;gap:16px}
+.contact-link{
+  padding:20px 24px;border:1px solid var(--border);border-radius:14px;
+  background:var(--panel);display:flex;align-items:center;justify-content:space-between;
+  gap:12px;transition:all .25s cubic-bezier(0.16,1,0.3,1);
+}
+.contact-link:hover{
+  border-color:var(--purple);background:#121e35;
+  transform:translateX(6px);box-shadow:0 8px 25px rgba(0,0,0,0.4);
+}
+.contact-link-left{display:flex;align-items:center;gap:14px}
+.contact-icon-frame{
+  width:48px;height:48px;border-radius:12px;background:#152238;border:1px solid #2c3f5d;
+  display:grid;place-items:center;color:#a883ff;flex-shrink:0;transition:all .2s ease;
+}
+.contact-link:hover .contact-icon-frame{transform:scale(1.12);background:#1d2b48}
+.contact-icon-frame svg{width:22px;height:22px}
+.contact-link-text span{font-size:13px;color:var(--muted);display:block}
+.contact-link-text strong{font-size:15px;font-weight:600;color:white;display:block}
+.arrow-icon{color:#778baa;width:18px;height:18px;flex-shrink:0;transition:transform .2s}
+.contact-link:hover .arrow-icon{transform:translate(3px,-3px);color:var(--cyan)}
+
+footer{padding:34px 0;color:#8290a9;font-size:13px}
+.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media(max-width:900px){
+  .nav-inner{min-height:76px;gap:14px}
+  .nav-links{gap:12px}
+  .nav-links a{font-size:13px}
+  .nav-resume{padding:12px 15px}
+  .hero{grid-template-columns:1fr 1fr;min-height:600px;gap:28px;padding:60px 0}
+  .hero h1{font-size:clamp(54px,6.6vw,68px);letter-spacing:-3px}
+  .hero h2{font-size:24px}
+  .hero p{font-size:15px}
+  .hero-visual{min-height:390px}
+  .avatar{width:220px;height:290px}
+  .orbit{width:min(310px,78%)}
+  .floating{padding:11px 12px}
+  .floating .symbol{width:32px;height:32px}
+  .client-section{grid-template-columns:1fr;gap:30px}
+  .skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .skill-tags{gap:4px}
+  .skill-tags span{font-size:10px;padding:5px 5px}
+  .contact-section{grid-template-columns:1fr}
+  .project-card,.skill-card,.education-card{padding:23px}
+  .project-card h3{font-size:21px}
+  .project-card p{font-size:14px}
+}
+@media(max-width:700px) and (min-width:651px){
+  .skill-tags{gap:2px}
+  .skill-tags span{padding:4px 2px}
+}
+@media(max-width:650px){
+  .container{width:94%}
+  .nav-inner{min-height:68px;flex-wrap:wrap;padding:9px 0}
+  .logo{font-size:29px}
+  .menu-btn{display:block}
+  .nav-links{
+    display:none;order:3;width:100%;padding:12px 0 6px;
+    flex-direction:column;align-items:stretch;gap:0;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px;font-size:14px;border-top:1px solid #1b2940}
+  .nav-resume{margin-left:auto}
+  .hero{grid-template-columns:1fr;min-height:0;padding:52px 0 40px;gap:0}
+  .hero h1{font-size:clamp(46px,12vw,62px);letter-spacing:-3px}
+  .hero h2{font-size:23px}
+  .hero p{font-size:15px}
+  .hero-visual{min-height:370px;margin-top:18px}
+  .avatar{width:195px;height:255px}
+  .orbit{width:270px}
+  .float-two{left:0}
+  .float-one,.float-three{right:0}
+  .floating strong{font-size:11px}
+  .floating small{font-size:10px}
+  section{padding:56px 0}
+  .section-title{font-size:clamp(32px,8vw,40px)}
+  .section-intro{font-size:15px}
+  .project-grid,.education-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr;gap:14px}
+  .skill-card{padding:19px}
+  .skill-card h3{font-size:17px}
+  .skill-tags{flex-wrap:wrap;gap:8px;overflow:visible}
+  .skill-tags span{font-size:12px;padding:7px 9px}
+  .education-card{padding:21px}
+  .education-card h3{font-size:18px}
+  .education-card p{font-size:14px}
+  .project-card{padding:20px}
+  .project-card h3{font-size:21px}
+  .project-card p{font-size:14px;min-height:0}
+  .real-certificate-thumb{height:210px}
+  .real-certificate-info{padding:17px}
+  .real-certificate-info h3{font-size:16px}
+  .real-certificate-info p{font-size:13px}
+  .contact-section{gap:28px}
+  .contact-link{padding:17px}
+  .contact-link-text strong{font-size:14px;overflow-wrap:anywhere}
+  footer{padding:27px 0}
+  .metrics{grid-template-columns:1fr}
+  .metric{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .metric strong{margin:0;font-size:16px}
+  .dash-bottom{grid-template-columns:1fr}
+  .section-head{align-items:start;flex-direction:column}
+  .muthuram-feature{margin-top:32px}
+}
+@media(max-width:390px){
+  .skills-grid{grid-template-columns:1fr}
+  .hero h1{font-size:44px}
+  .pill{font-size:11px}
+  .hero-actions .btn{width:100%}
+  .floating{padding:9px}
+  .floating strong{font-size:10px}
+}
+
+/* Added portfolio sections */
+.service-grid,.certificate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:30px}
+.service-card,.certificate-card{
+  background:linear-gradient(145deg,#0e1727,#090f1b);border:1px solid var(--border);
+  border-radius:17px;padding:26px;transition:all .3s cubic-bezier(0.16,1,0.3,1);
+}
+.service-card:hover,.certificate-card:hover{transform:translateY(-5px);border-color:#7f5be2;box-shadow:0 18px 35px -12px rgba(127,91,226,.3)}
+.service-icon,.certificate-icon{
+  width:50px;height:50px;border-radius:12px;display:grid;place-items:center;
+  background:#1d2041;color:#ba8aff;margin-bottom:17px;border:1px solid #39345f;
+}
+.service-icon svg,.certificate-icon svg{width:25px;height:25px}
+.service-card h3,.certificate-card h3{font-size:19px;margin-bottom:9px}
+.service-card p,.certificate-card p{font-size:15px;line-height:1.6;color:var(--muted)}
+.certificate-meta{font-size:12px;color:#91a4c3;margin-top:14px}
+.certificate-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.project-label{
+  display:inline-flex;align-items:center;gap:6px;border:1px solid #3b4c6a;
+  background:#111e32;color:#b8caff;border-radius:20px;padding:5px 9px;
+  font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase
+}
+.project-label.freelance{border-color:#5a438f;background:#241b3c;color:#d0b8ff}
+.certificate-note{margin-top:20px;color:var(--muted);font-size:13px}
+@media(max-width:900px){.service-grid,.certificate-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.service-grid,.certificate-grid{grid-template-columns:1fr}}
+
+
+/* Muthuram Shoe Mart full-width freelance feature */
+.freelance-feature{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;
+  gap:clamp(28px,4vw,64px);min-height:800px;padding:clamp(30px,4vw,56px);
+  border:1px solid var(--border);border-radius:18px;
+  background:linear-gradient(145deg,#0e1727,#090f1b);box-shadow:0 22px 55px #0004;
+  transition:all .3s cubic-bezier(0.16,1,0.3,1);position:relative;
+}
+.freelance-feature:hover{
+  transform:translateY(-4px);border-color:#7f5be2;
+  box-shadow:0 20px 40px -10px rgba(127,91,226,.3);
+}
+.muthuram-feature{margin-top:48px}
+.freelance-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0;width:100%}
+.freelance-copy .eyebrow{font-size:12px}
+.freelance-copy .section-title{font-size:clamp(30px,3vw,44px);line-height:1.15}
+.freelance-copy .tags{gap:10px;margin:20px 0}
+.freelance-copy .tag{font-size:12px;padding:7px 13px}
+.freelance-copy>p{color:var(--muted);font-size:16px;line-height:1.75;margin:16px 0}
+.freelance-copy .features{gap:13px;margin:20px 0}
+.freelance-copy .features li{font-size:14px;line-height:1.5}
+.freelance-copy .check{width:21px;height:21px;font-size:12px}
+.freelance-copy .hero-actions{gap:12px;margin-top:22px}
+.freelance-copy .btn{font-size:13px;padding:13px 17px}
+.freelance-feature .dashboard{padding:clamp(20px,2vw,30px);border-radius:18px}
+.freelance-feature .dash-header h3{font-size:18px}
+.freelance-feature .dash-header span{font-size:10px}
+.freelance-feature .filters{gap:9px;margin:18px 0}
+.freelance-feature .filter{font-size:11px;padding:8px 11px}
+.freelance-feature .metrics{gap:10px}
+.freelance-feature .metric{padding:14px}
+.freelance-feature .metric span,.freelance-feature .metric small{font-size:10px}
+.freelance-feature .metric strong{font-size:clamp(16px,1.6vw,23px)}
+.freelance-feature .chart-card{padding:16px;margin-top:14px}
+.freelance-feature .chart-card h4{font-size:13px}
+.freelance-feature .chart{height:170px;gap:9px}
+.freelance-feature .chart-labels{font-size:9px}
+.freelance-feature .dash-bottom{gap:12px;margin-top:14px}
+.freelance-feature .insight{padding:14px}
+.freelance-feature .insight span,.freelance-feature .insight small{font-size:10px}
+.freelance-feature .insight strong{font-size:14px}
+.freelance-feature .disclaimer{font-size:10px;margin-top:14px}
+.muthuram-browser{overflow:hidden;border:1px solid #354967;border-radius:13px;background:#080f19;box-shadow:0 20px 50px #0006}
+.muthuram-screen{padding:15px;background:#f2f1ec;color:#18202b}
+.muthuram-screen-top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 3px 14px;border-bottom:1px solid #d9dce1}
+.muthuram-brand{font-size:11px;font-weight:800;letter-spacing:1px;color:#18202b}
+.muthuram-brand b{color:#79a92d}
+.muthuram-nav{font-size:7px;font-weight:700;color:#394454;letter-spacing:.5px}
+.muthuram-hero{min-height:225px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:8px;padding:22px 16px;background:linear-gradient(120deg,#f3f2ec,#e5e8df)}
+.muthuram-kicker{font-size:8px;font-weight:800;letter-spacing:2px;color:#739d32}
+.muthuram-hero h3{font-size:clamp(25px,3vw,39px);line-height:1.02;letter-spacing:-1.5px;margin:10px 0;color:#18202b}
+.muthuram-hero h3 span{color:#739d32}
+.muthuram-hero p{font-size:9px;color:#586170;margin-bottom:14px}
+.muthuram-shop{display:inline-block;background:#18202b;color:#fff;padding:9px 11px;font-size:7px;font-weight:800;letter-spacing:.7px;border-radius:3px}
+.muthuram-shoe-art{height:150px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse,#cbd4bd 0%,transparent 67%)}
+.shoe-shape{width:175px;height:62px;position:relative;transform:rotate(-18deg);border-radius:65% 25% 25% 35%;background:linear-gradient(160deg,#fdfdf9 0%,#b8c0b0 52%,#68765c 100%);box-shadow:inset -8px -9px 12px #46543b44,0 14px 18px #3334}
+.shoe-shape:before{content:"";position:absolute;right:-20px;bottom:-5px;width:78px;height:23px;border-radius:5px 22px 18px 5px;background:#f8f8ef;border-bottom:5px solid #89947e}
+.shoe-shape:after{content:"";position:absolute;left:27px;top:13px;width:72px;height:2px;background:#78856d;box-shadow:0 8px #78856d,0 16px #78856d;transform:rotate(-8deg)}
+.shoe-shape span{position:absolute;left:17px;top:4px;width:55px;height:25px;border-left:3px solid #8c987e;border-radius:50%;transform:rotate(-20deg)}
+.shoe-shadow{position:absolute;bottom:24px;width:150px;height:15px;border-radius:50%;background:#26302022;filter:blur(7px)}
+.muthuram-products{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;background:#fff}
+.muthuram-products>div{display:flex;align-items:center;gap:7px;padding:8px;background:#f4f5f1;border-radius:5px}
+.product-thumb{font-size:19px}
+.muthuram-products small{font-size:7px;font-weight:800;color:#343d34}
+.muthuram-caption{text-align:center;color:#8293ae;font-size:11px;margin-top:12px}
+@media(max-width:900px){
+  .freelance-feature{min-height:790px;gap:24px;padding:clamp(24px,3vw,38px)}
+  .client-section.freelance-feature,.muthuram-feature{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .freelance-copy .section-title{font-size:clamp(28px,3.8vw,36px)}
+  .freelance-copy>p{font-size:14px;line-height:1.65}
+  .freelance-copy .features li{font-size:13px}
+  .freelance-copy .tag{font-size:12px;padding:6px 10px}
+  .freelance-feature .chart{height:145px}
+  .muthuram-feature{margin-top:36px}
+}
+@media(max-width:720px){
+  .client-section.freelance-feature,.muthuram-feature{grid-template-columns:1fr;min-height:0;gap:28px;padding:26px}
+  .freelance-copy .section-title{font-size:clamp(28px,7vw,36px)}
+  .freelance-feature .dashboard{width:100%}
+  .muthuram-feature{margin-top:32px}
+}
+@media(max-width:650px){
+  .client-section.freelance-feature,.muthuram-feature{gap:22px;padding:20px}
+  .freelance-copy .section-title{font-size:30px}
+  .freelance-copy>p{font-size:14px}
+  .freelance-copy .features li{font-size:13px}
+  .freelance-copy .hero-actions{margin-top:16px}
+  .freelance-copy .hero-actions .btn{width:auto}
+  .freelance-feature .dashboard{padding:17px}
+  .freelance-feature .chart{height:130px}
+  .freelance-feature .metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .freelance-feature .metric{display:block;padding:10px 7px}
+  .freelance-feature .metric span,.freelance-feature .metric small{font-size:9px}
+  .freelance-feature .metric strong{font-size:clamp(12px,3.8vw,16px);margin:6px 0}
+  .freelance-feature .dash-bottom{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .muthuram-nav{display:none}
+  .muthuram-hero{min-height:190px;padding:15px 9px}
+  .muthuram-shoe-art{height:125px}
+  .shoe-shape{transform:scale(.78) rotate(-18deg)}
+}
+
+
+.certificate-section-head{align-items:center}
+.view-all-certificates-link{white-space:nowrap;flex-shrink:0}
+@media(max-width:650px){
+  .certificate-section-head{align-items:flex-start;flex-direction:row;gap:8px}
+  .view-all-certificates-link{align-self:flex-start}
+  .certificate-view-all{padding:10px 12px;font-size:10px}
+}
+
+
+/* Actual Muthuram Shoe Mart screenshots */
+.muthuram-gallery{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;border:1px solid #354967;border-radius:14px;background:#f6eee3;box-shadow:0 20px 50px #0006;touch-action:pan-y}
+.muthuram-gallery-slide{position:absolute;inset:0;display:grid;place-items:center;padding:6px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.muthuram-gallery-slide.is-active{opacity:1;visibility:visible}
+.muthuram-gallery-slide img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .35s ease}
+.muthuram-gallery:hover .muthuram-gallery-slide.is-active img{transform:scale(1.015)}
+.muthuram-gallery-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px}
+.muthuram-gallery-arrow{width:34px;height:34px;display:grid;place-items:center;border:1px solid #354967;border-radius:50%;background:#101b2c;color:#dce6f7;font-size:17px;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.muthuram-gallery-arrow:hover{transform:translateY(-2px);border-color:#9a68f0;background:#211a3e}
+.muthuram-gallery-arrow:focus-visible,.muthuram-gallery-indicator:focus-visible{outline:2px solid #a983ff;outline-offset:3px}
+.muthuram-gallery-indicators{display:flex;align-items:center;gap:8px}
+.muthuram-gallery-indicator{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#586782;cursor:pointer;transition:width .25s ease,background .25s ease}
+.muthuram-gallery-indicator[aria-pressed="true"]{width:22px;border-radius:8px;background:linear-gradient(100deg,#438bff,#a36bff)}
+.muthuram-caption{text-align:center;color:#8293ae;font-size:11px;margin-top:10px}
+@media(prefers-reduced-motion:reduce){.muthuram-gallery-slide,.muthuram-gallery-slide img,.muthuram-gallery-arrow,.muthuram-gallery-indicator{transition:none}}
+
+/* Real certificates displayed directly on the portfolio page */
+.certificate-grid.real-certificate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:26px}
+.real-certificate-card{overflow:hidden;min-width:0;border:1px solid var(--border);border-radius:14px;background:linear-gradient(145deg,#111e33,#0b1423);transition:transform .25s ease,border-color .25s ease}
+.real-certificate-card:hover{transform:translateY(-4px);border-color:#9361e8}
+.real-certificate-thumb{height:250px;background:#f7f7f7;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.real-certificate-thumb img{width:100%;height:100%;object-fit:contain;display:block}
+.real-certificate-info{padding:20px}
+.real-certificate-info h3{font-size:16px;line-height:1.45;margin-bottom:8px}
+.real-certificate-info p{font-size:14px;line-height:1.6;color:var(--muted)}
+.real-certificate-info .certificate-meta{margin:8px 0 0;font-size:12px;color:#aebbd1}
+.certificate-note{margin-top:17px;color:var(--muted);font-size:11px}
+@media(max-width:900px){.certificate-grid.real-certificate-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.real-certificate-thumb{height:180px}}
+@media(max-width:650px){.certificate-grid.real-certificate-grid{grid-template-columns:1fr}.real-certificate-thumb{height:200px}}
+
+
+.certificate-open-link{display:inline-flex;align-items:center;margin-top:14px;padding:10px 14px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:650;color:#fff;background:linear-gradient(100deg,#397bff,#873bff);transition:transform .2s ease,filter .2s ease}
+.certificate-open-link:hover{transform:translateY(-2px);filter:brightness(1.12)}
+
+
+.certificate-view-all{white-space:nowrap;align-self:center}
+
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">AK<span>.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#client">Client Deliverable</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certificates</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-secondary nav-resume" href="arunkumar_resume_da2026.pdf" download="Arunkumar_Nedunchezhiyan_Resume.pdf">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Resume
+    </a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="home" style="padding-top:0;padding-bottom:0">
+<div class="container hero">
+  <div class="hero-content">
+    <div class="pill">
+      <span class="dot" style="display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green)"></span>
+      B.Tech IT Student <span class="dot">|</span> Aspiring Data Analyst & Full Stack Developer
+    </div>
+    
+    <!-- Hero Headline with Clean Running Text -->
+    <h1>Hi, I'm<br>
+      <span class="gradient-text" id="runningText"></span><span class="typewriter-cursor"></span>
+    </h1>
+
+    <h2>Building real-world solutions with AI, Data & Web technologies.</h2>
+    <p>Passionate about creating impactful applications, analyzing data to find insights, and exploring AI to solve real-world problems.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+        View My Projects
+      </a>
+      <a class="btn btn-secondary" href="arunkumar_resume_da2026.pdf" download="Arunkumar_Nedunchezhiyan_Resume.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M21 17v4H3v-4"/></svg>
+        Download Resume
+      </a>
+    </div>
+    
+    <div class="socials">
+      <a class="social-icon-btn" href="https://github.com/Arun-701" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+        GitHub
+      </a>
+      <a class="social-icon-btn" href="https://linkedin.com/in/arunkumar-n-analyst" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        LinkedIn
+      </a>
+      <a class="social-icon-btn" href="mailto:narunkumar200530@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="orbit"></div>
+    <div class="avatar">
+      <img src="profile.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534972195531-a756b1129f63?auto=format&fit=crop&w=700&q=80';" alt="Arunkumar Nedunchezhiyan">
+    </div>
+    <div class="floating float-one">
+      <div class="symbol">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <div><strong>B.Tech IT</strong><small>Final Year • Sona College</small></div>
+    </div>
+    <div class="floating float-two">
+      <div class="symbol">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <div><strong>Data Analyst</strong><small>Power BI, SQL, Python</small></div>
+    </div>
+    <div class="floating float-three">
+      <div class="symbol">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <div><strong>Full Stack Dev</strong><small>MERN Architecture</small></div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- CLIENT DELIVERABLE -->
+<section id="client">
+<div class="container client-section freelance-feature spotlight-card">
+  <div class="client-copy freelance-copy">
+    <div class="eyebrow">My Freelance Work</div>
+    <h2 class="section-title">Enterprise Telemetry & Sales Dashboard</h2>
+    <div class="tags">
+      <span class="tag">Power BI</span><span class="tag">Excel</span>
+      <span class="tag">Data Analysis</span><span class="tag">Business Intelligence</span>
+    </div>
+    <p>An interactive sales and telemetry dashboard designed to turn commercial operations data into actionable insights. Explore revenue trends, profitability, transaction speed, and regional performance through visual reports and filters.</p>
+    <ul class="features">
+      <li><span class="check">✓</span>Sales, profit, and order KPIs</li>
+      <li><span class="check">✓</span>Data cleaning and transformation</li>
+      <li><span class="check">✓</span>Product, category, and regional analysis</li>
+      <li><span class="check">✓</span>Interactive charts and business insights</li>
+    </ul>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">↗ View Deliverable</a>
+      <a class="btn btn-secondary" href="https://github.com/Arun-701/Muthuram-Shoe-Mart" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a>
+    </div>
+  </div>
+
+  <div class="dashboard spotlight-card">
+    <div class="dash-header"><h3>Enterprise Sales Overview</h3><span style="display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 8px var(--green)"></span> LIVE PREVIEW</span></div>
+    
+    <div class="filters">
+      <span class="filter active" onclick="toggleFilter(this, 'all')">Date: 2026 ▾</span>
+      <span class="filter" onclick="toggleFilter(this, 'retail')">Category: Retail ▾</span>
+      <span class="filter" onclick="toggleFilter(this, 'south')">Region: South India ▾</span>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><span>Total Sales</span><strong id="salesVal">₹2.48M</strong><small>↗ 12.5%</small></div>
+      <div class="metric"><span>Total Orders</span><strong id="ordersVal">5,261</strong><small>↗ 18.3%</small></div>
+      <div class="metric"><span>Profit</span><strong id="profitVal">₹408K</strong><small>↗ 10.2%</small></div>
+    </div>
+    
+    <div class="chart-card">
+      <h4>Monthly Sales Trend (Interactive)</h4>
+      <div class="chart" aria-label="Monthly sales bar chart" id="chartContainer">
+        <div class="bar" style="height:35%" title="Jan: ₹180K"></div>
+        <div class="bar" style="height:44%" title="Feb: ₹210K"></div>
+        <div class="bar" style="height:40%" title="Mar: ₹195K"></div>
+        <div class="bar" style="height:55%" title="Apr: ₹260K"></div>
+        <div class="bar" style="height:49%" title="May: ₹240K"></div>
+        <div class="bar" style="height:65%" title="Jun: ₹310K"></div>
+        <div class="bar" style="height:57%" title="Jul: ₹275K"></div>
+        <div class="bar" style="height:75%" title="Aug: ₹350K"></div>
+        <div class="bar" style="height:69%" title="Sep: ₹330K"></div>
+        <div class="bar" style="height:86%" title="Oct: ₹395K"></div>
+        <div class="bar" style="height:78%" title="Nov: ₹370K"></div>
+        <div class="bar" style="height:100%" title="Dec: ₹480K"></div>
+      </div>
+      <div class="chart-labels"><span>JAN</span><span>MAR</span><span>MAY</span><span>JUL</span><span>SEP</span><span>DEC</span></div>
+    </div>
+    
+    <div class="dash-bottom">
+      <div class="insight"><span>TOP CATEGORY</span><strong>Electronics & Retail</strong><small>Regional sales volume</small></div>
+      <div class="insight"><span>TELEMETRY SYNC</span><strong>Real-Time Data</strong><small>Sub-350ms Query Latency</small></div>
+    </div>
+    <div class="disclaimer">Production deliverable engineered for commercial sales tracking and operations.</div>
+  </div>
+</div>
+
+
+  <div class="container muthuram-feature freelance-feature spotlight-card">
+    <div class="muthuram-copy freelance-copy">
+      <div class="eyebrow">Freelance E-commerce Project</div>
+      <h2 class="section-title">Muthuram Shoe Mart</h2>
+      <div class="tags">
+        <span class="tag">React</span><span class="tag">Tailwind CSS</span>
+        <span class="tag">Node.js</span><span class="tag">Express</span>
+        <span class="tag">PostgreSQL</span><span class="tag">Prisma</span>
+      </div>
+      <p>A full-stack footwear e-commerce platform designed to make online product discovery and store management easier. The experience includes product browsing, category filters, product details, cart and checkout workflows, plus admin-side product, inventory, and order management.</p>
+      <ul class="features">
+        <li><span class="check">✓</span>Product catalogue and category browsing</li>
+        <li><span class="check">✓</span>Product details, cart, and checkout flow</li>
+        <li><span class="check">✓</span>Admin product and inventory management</li>
+        <li><span class="check">✓</span>Order management and responsive storefront</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn-secondary" href="https://github.com/Arun-701/Muthuram-Shoe-Mart" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="muthuram-visual spotlight-card">
+      <div class="muthuram-gallery" role="region" aria-label="Muthuram Shoe Mart website screenshots" aria-roledescription="carousel" tabindex="0">
+        <div class="muthuram-gallery-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3" aria-hidden="false">
+          <img src="assets/muthuram-homepage.png" alt="Muthuram Shoe Mart homepage screenshot">
+        </div>
+        <div class="muthuram-gallery-slide" role="group" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true">
+          <img src="assets/muthuram-categories.png" alt="Muthuram Shoe Mart Men, Women and Kids banners, product categories, and Step into Savings offer">
+        </div>
+        <div class="muthuram-gallery-slide" role="group" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true">
+          <img src="assets/muthuram-products.png" alt="Muthuram Shoe Mart limited-time offers, product cards, recently viewed items, and new arrivals">
+        </div>
+      </div>
+      <div class="muthuram-gallery-controls" aria-label="Screenshot navigation">
+        <button class="muthuram-gallery-arrow" type="button" data-gallery-prev aria-label="Show previous screenshot">‹</button>
+        <div class="muthuram-gallery-indicators">
+          <button class="muthuram-gallery-indicator" type="button" data-gallery-slide="0" aria-label="Show homepage screenshot" aria-pressed="true"></button>
+          <button class="muthuram-gallery-indicator" type="button" data-gallery-slide="1" aria-label="Show categories screenshot" aria-pressed="false"></button>
+          <button class="muthuram-gallery-indicator" type="button" data-gallery-slide="2" aria-label="Show product sections screenshot" aria-pressed="false"></button>
+        </div>
+        <button class="muthuram-gallery-arrow" type="button" data-gallery-next aria-label="Show next screenshot">›</button>
+      </div>
+      <div class="muthuram-caption" aria-live="polite">Muthuram Shoe Mart — Homepage preview</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container">
+  <div class="section-head">
+    <div><div class="eyebrow">Selected Work</div><h2 class="section-title">Verified GitHub Projects</h2></div>
+    <a class="btn btn-secondary" href="https://github.com/Arun-701" target="_blank" rel="noopener">All Repositories ↗</a>
+  </div>
+  <div class="project-grid">
+    
+    <!-- Project 1: AI Placement Intelligence -->
+    <article class="project-card spotlight-card">
+      <div class="project-image-box">
+        <img src="assets/projects/ai-placement-intelligence.png" alt="AI placement readiness dashboard showing student assessments, resume ATS analysis, and career skills">
+      </div>
+
+      <div class="eyebrow">MERN & Intelligence</div>
+      <h3>AI Placement Intelligence Platform</h3>
+      <p>An AI-driven student career platform with assessments, mock evaluations, resume analytics, learning roadmaps, and career skill guidance.</p>
+      <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span></div>
+      <div class="project-links">
+        <a class="btn btn-primary" href="https://github.com/Arun-701/AI-Placement-Intelligence-Platform" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+          Repository
+        </a>
+        <a class="btn btn-secondary" href="https://github.com/Arun-701" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </article>
+
+    <!-- Project 2: Superstore Sales Dashboard -->
+    <article class="project-card spotlight-card">
+      <div class="project-image-box">
+        <img src="assets/projects/superstore-sales-dashboard.jpeg" alt="Power BI Superstore Sales Dashboard screenshot">
+      </div>
+
+      <div class="eyebrow">Data Analytics & Business Intelligence</div>
+      <h3>Superstore Sales Dashboard</h3>
+      <p>An interactive Power BI dashboard built on the Sample Superstore dataset, with category, product, priority and regional sales views, sales and profit trends, and interactive slicers.</p>
+      <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span><span class="tag">Interactive Slicers</span></div>
+      <div class="project-links">
+        <a class="btn btn-primary" href="https://github.com/Arun-701/Superstore-Sales-Dashboard" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+          Repository
+        </a>
+      </div>
+    </article>
+
+
+
+
+  </div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="container">
+  <div class="eyebrow">My Toolkit</div>
+  <h2 class="section-title">Technologies I Work With</h2>
+  <p class="section-intro">Tools and technologies I use for full-stack web applications, data analytics, and cloud engineering.</p>
+  <div class="skills-grid" style="margin-top:25px">
+    <article class="skill-card spotlight-card"><h3>Languages</h3><div class="skill-tags"><span>Python</span><span>JavaScript (ES6+)</span><span>SQL</span><span>Java</span></div></article>
+    <article class="skill-card spotlight-card"><h3>Frontend</h3><div class="skill-tags"><span>React.js</span><span>HTML5</span><span>CSS3</span><span>Tailwind CSS</span></div></article>
+    <article class="skill-card spotlight-card"><h3>Backend</h3><div class="skill-tags"><span>Node.js</span><span>Express.js</span><span>REST APIs</span><span>JSON</span></div></article>
+    <article class="skill-card spotlight-card"><h3>Data &amp; Analytics</h3><div class="skill-tags"><span>Power BI</span><span>Advanced Excel</span><span>Pandas</span><span>Matplotlib</span></div></article>
+    <article class="skill-card spotlight-card"><h3>Databases</h3><div class="skill-tags"><span>MongoDB</span><span>MySQL</span><span>Relational DBs</span><span>Aggregations</span></div></article>
+    <article class="skill-card spotlight-card"><h3>Cloud &amp; Tools</h3><div class="skill-tags"><span>Git</span><span>GitHub</span><span>AWS (EC2, S3)</span><span>VS Code</span></div></article>
+  </div>
+</div>
+</section>
+
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+<div class="container">
+  <div class="section-head certificate-section-head">
+    <div>
+      <div class="eyebrow">Learning & Achievements</div>
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-intro">A selection of professional certifications and industry learning achievements.</p>
+    </div>
+    <a class="btn btn-secondary certificate-view-all" href="certificates.html">View All Certificates ↗</a>
+  </div>
+  <div class="certificate-grid real-certificate-grid">
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><img src="assets/certificates/cii-foundational-ai.png" alt="Foundational Course on Applied Machine Learning and AI certificate preview" loading="lazy"></div>
+      <div class="real-certificate-info">
+        <h3>Foundational Course on Applied Machine Learning and AI</h3>
+        <p>Confederation of Indian Industry (CII) · Centre for AI</p>
+        <div class="certificate-meta">16 Jul 2026</div>
+        <a class="certificate-open-link" href="certificates/cii-foundational-ai.png" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><img src="assets/certificates/certificate-03.jpg" alt="AWS Academy Graduate – Cloud Foundations certificate preview" loading="lazy"></div>
+      <div class="real-certificate-info">
+        <h3>AWS Academy Graduate – Cloud Foundations</h3>
+        <p>AWS Academy · 20 hours</p>
+        <div class="certificate-meta">2026</div>
+        <a class="certificate-open-link" href="certificates/aws-cloud-foundations.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+    <article class="real-certificate-card">
+      <div class="real-certificate-thumb"><img src="assets/certificates/certificate-08.jpg" alt="Data Analytics Job Simulation certificate preview" loading="lazy"></div>
+      <div class="real-certificate-info">
+        <h3>Data Analytics Job Simulation</h3>
+        <p>Quantium · Forage</p>
+        <div class="certificate-meta">17 Jul 2026</div>
+        <a class="certificate-open-link" href="certificates/quantium-data-analytics.pdf" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+      </div>
+    </article>
+  </div>
+</div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+<div class="container">
+  <div class="eyebrow">Academics</div>
+  <h2 class="section-title">Education & Milestones</h2>
+  <div class="education-grid" style="margin-top:25px">
+    <article class="education-card spotlight-card">
+      <div class="edu-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <div>
+        <div class="eyebrow">Final Year (2024 – 2027)</div>
+        <h3>B.Tech / B.E Information Technology</h3>
+        <p>Sona College of Technology, Salem</p>
+        <p>Focus: Cloud Computing, Machine Learning, Full-Stack Development, and System Architecture.</p>
+      </div>
+    </article>
+    <article class="education-card spotlight-card">
+      <div class="edu-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      </div>
+      <div>
+        <div class="eyebrow">Completed (2024)</div>
+        <h3>Diploma in Electronics & Communication Engineering (ECE)</h3>
+        <p>Thiagarajar Polytechnic College, Salem</p>
+        <p>Foundations in Embedded Systems, Circuit Design, Microcontrollers, and Digital Electronics.</p>
+      </div>
+    </article>
+  </div>
+  
+  <div class="stats" id="statsSection">
+    <div class="stat"><strong>Web</strong><span>Development</span></div>
+    <div class="stat"><strong>Data</strong><span>Analytics</span></div>
+    <div class="stat"><strong>AI</strong><span>Projects & Learning</span></div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container contact-section">
+  <div class="contact-copy">
+    <div class="eyebrow">Let's Connect</div>
+    <h2 class="section-title">Let's Build Something Great.</h2>
+    <p>Open to developer opportunities, analytics internships, and commercial freelance projects. Feel free to reach out directly.</p>
+  </div>
+
+  <div class="contact-links">
+    <a class="contact-link spotlight-card" href="mailto:narunkumar200530@gmail.com">
+      <div class="contact-link-left">
+        <div class="contact-icon-frame" style="color:#ef5b5b">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="contact-link-text">
+          <span>Email Address</span>
+          <strong>narunkumar200530@gmail.com</strong>
+        </div>
+      </div>
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+    </a>
+
+    <a class="contact-link spotlight-card" href="tel:+917603800334">
+      <div class="contact-link-left">
+        <div class="contact-icon-frame" style="color:#4ade80">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="contact-link-text">
+          <span>Phone / WhatsApp</span>
+          <strong>+91 76038 00334</strong>
+        </div>
+      </div>
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+    </a>
+
+    <a class="contact-link spotlight-card" href="https://linkedin.com/in/arunkumar-n-analyst" target="_blank" rel="noopener">
+      <div class="contact-link-left">
+        <div class="contact-icon-frame" style="color:#0a66c2">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        </div>
+        <div class="contact-link-text">
+          <span>LinkedIn Network</span>
+          <strong>linkedin.com/in/arunkumar-n-analyst</strong>
+        </div>
+      </div>
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+    </a>
+
+    <a class="contact-link spotlight-card" href="https://github.com/Arun-701" target="_blank" rel="noopener">
+      <div class="contact-link-left">
+        <div class="contact-icon-frame" style="color:#ffffff">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+        </div>
+        <div class="contact-link-text">
+          <span>GitHub Code</span>
+          <strong>github.com/Arun-701</strong>
+        </div>
+      </div>
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+    </a>
+  </div>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Arunkumar Nedunchezhiyan. All rights reserved.</span>
+    <a href="#home">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+  menuBtn.textContent = isOpen ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.textContent = "☰";
+  });
+});
+
+const muthuramGallery = document.querySelector(".muthuram-gallery");
+if (muthuramGallery) {
+  const galleryVisual = muthuramGallery.closest(".muthuram-visual");
+  const slides = [...muthuramGallery.querySelectorAll(".muthuram-gallery-slide")];
+  const indicators = [...galleryVisual.querySelectorAll(".muthuram-gallery-indicator")];
+  const caption = galleryVisual.querySelector(".muthuram-caption");
+  const captions = [
+    "Muthuram Shoe Mart — Homepage preview",
+    "Muthuram Shoe Mart — Categories and offers preview",
+    "Muthuram Shoe Mart — Product sections preview"
+  ];
+  let activeSlide = 0;
+  let pointerStartX = null;
+
+  function updateGalleryAspectRatio() {
+    const image = slides[activeSlide].querySelector("img");
+    if (image.naturalWidth && image.naturalHeight) {
+      muthuramGallery.style.aspectRatio = `${image.naturalWidth} / ${image.naturalHeight}`;
+    }
+  }
+
+  function showMuthuramSlide(index) {
+    activeSlide = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === activeSlide;
+      slide.classList.toggle("is-active", isActive);
+      slide.setAttribute("aria-hidden", String(!isActive));
+      slide.setAttribute("aria-label", `${slideIndex + 1} of ${slides.length}`);
+      indicators[slideIndex].setAttribute("aria-pressed", String(isActive));
+    });
+    updateGalleryAspectRatio();
+    caption.textContent = captions[activeSlide];
+  }
+
+  slides.forEach(slide => {
+    slide.querySelector("img").addEventListener("load", updateGalleryAspectRatio);
+  });
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => showMuthuramSlide(index));
+  });
+  galleryVisual.querySelector("[data-gallery-prev]").addEventListener("click", () => {
+    showMuthuramSlide(activeSlide - 1);
+  });
+  galleryVisual.querySelector("[data-gallery-next]").addEventListener("click", () => {
+    showMuthuramSlide(activeSlide + 1);
+  });
+  muthuramGallery.addEventListener("keydown", event => {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      showMuthuramSlide(activeSlide + (event.key === "ArrowRight" ? 1 : -1));
+    }
+  });
+  muthuramGallery.addEventListener("pointerdown", event => {
+    if (event.pointerType !== "mouse") pointerStartX = event.clientX;
+  });
+  muthuramGallery.addEventListener("pointerup", event => {
+    if (pointerStartX === null) return;
+    const distance = event.clientX - pointerStartX;
+    pointerStartX = null;
+    if (Math.abs(distance) >= 45) showMuthuramSlide(activeSlide + (distance < 0 ? 1 : -1));
+  });
+  muthuramGallery.addEventListener("pointercancel", () => {
+    pointerStartX = null;
+  });
+  updateGalleryAspectRatio();
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const cursorGlow = document.getElementById('cursorGlow');
+window.addEventListener('mousemove', (e) => {
+  cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+});
+
+document.querySelectorAll('.spotlight-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  });
+});
+
+function toggleFilter(el, type) {
+  document.querySelectorAll('.filters .filter').forEach(f => f.classList.remove('active'));
+  el.classList.add('active');
+
+  const salesEl = document.getElementById('salesVal');
+  const ordersEl = document.getElementById('ordersVal');
+  const profitEl = document.getElementById('profitVal');
+
+  if(type === 'retail') {
+    salesEl.textContent = '₹1.85M';
+    ordersEl.textContent = '3,840';
+    profitEl.textContent = '₹310K';
+  } else if(type === 'south') {
+    salesEl.textContent = '₹980K';
+    ordersEl.textContent = '2,150';
+    profitEl.textContent = '₹175K';
+  } else {
+    salesEl.textContent = '₹2.48M';
+    ordersEl.textContent = '5,261';
+    profitEl.textContent = '₹408K';
+  }
+}
+
+const textElement = document.getElementById('runningText');
+const phrases = [
+  'Arunkumar N',
+  'Data Analyst',
+  'Full-Stack Developer'
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typeSpeed = 100;
+
+function typeEffect() {
+  const currentPhrase = phrases[phraseIndex];
+  
+  if (isDeleting) {
+    textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+    charIndex--;
+    typeSpeed = 45;
+  } else {
+    textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+    charIndex++;
+    typeSpeed = 105;
+  }
+
+  if (!isDeleting && charIndex === currentPhrase.length) {
+    typeSpeed = 1800;
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    typeSpeed = 350;
+  }
+
+  setTimeout(typeEffect, typeSpeed);
+}
+
+document.addEventListener('DOMContentLoaded', typeEffect);
+
+</script>
+</body>
+</html>
